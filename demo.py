@@ -167,8 +167,8 @@ os.mkdir('/home/soonfy/personal/python/demo')
 os.rmdir('/home/soonfy/personal/python/demo')
 print(os.path.split('/home/soonfy/personal/python/package.json'))
 print(os.path.splitext('/home/soonfy/personal/python/package.json'))
-os.rename('demo.txt', 'demo.md')
-os.remove('demo.md')
+# os.rename('demo.txt', 'demo.md')
+# os.remove('demo.md')
 
 # import os
 # print('process (%s) start...' % os.getpid())
@@ -217,3 +217,60 @@ print(dt)
 from datetime import timedelta
 print(now + timedelta(hours = 10))
 print(now - timedelta(days = 1))
+
+from collections import namedtuple
+# 自定义tuple对象
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+print(p.x, p.y)
+from collections import deque
+# 双向队列
+que = deque([1, 2, 3])
+que.append(4)
+que.appendleft(0)
+print(que)
+from collections import defaultdict
+# dict默认值
+dd = defaultdict(lambda: 'N/A')
+dd['x'] = 1
+print(dd['x'], dd['y'])
+from collections import OrderedDict
+# dict排序
+d = OrderedDict([('b', 1), ('c', 2), ('a', 3)])
+print(d)
+print(list(d.keys()))
+from collections import Counter
+c = Counter()
+for ch in 'helloelse':
+  c[ch] = c[ch] + 1
+print(c)
+
+import hashlib
+md = hashlib.md5()
+md.update('soonfy'.encode('utf-8'))
+print(md.hexdigest())
+sha = hashlib.sha1()
+sha.update('soonfy'.encode('utf-8'))
+print(sha.hexdigest())
+
+import itertools
+natu = itertools.count(1, 2)
+# for no in natu:
+#   print(no)
+
+cs = itertools.cycle('abcd')
+# for ch in cs:
+#   print(ch)
+
+re = itertools.repeat('abc', 3)
+for ch in re:
+  print(ch)
+
+for ch in itertools.chain('abc', 'xyz'):
+  print(ch)
+
+for key, group in itertools.groupby('AAaabbBBccaa'):
+  print(key, list(group))
+
+for key, group in itertools.groupby('AAaabbBBccaa', lambda c: c.upper()):
+  print(key, list(group))

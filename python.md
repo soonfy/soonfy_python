@@ -275,4 +275,111 @@
   print(now - timedelta(days = 1))
   ```
 
-  2. 
+  2. 集合  
+  ```
+  from collections import namedtuple
+  # 自定义tuple对象
+  Point = namedtuple('Point', ['x', 'y'])
+  p = Point(1, 2)
+  print(p.x, p.y)
+  from collections import deque
+  # 双向队列
+  que = deque([1, 2, 3])
+  que.append(4)
+  que.appendleft(0)
+  print(que)
+  from collections import defaultdict
+  # dict默认值
+  dd = defaultdict(lambda: 'N/A')
+  dd['x'] = 1
+  print(dd['x'], dd['y'])
+  from collections import OrderedDict
+  # dict排序
+  d = OrderedDict([('b', 1), ('c', 2), ('a', 3)])
+  print(d)
+  print(list(d.keys()))
+  from collections import Counter
+  c = Counter()
+  for ch in 'helloelse':
+    c[ch] = c[ch] + 1
+  print(c)
+  ```
+  
+  3. base64  
+  二进制转换字符串  
+  ```
+  import base64
+  base64.b64.encode()
+  base64.b64decode()
+  ```
+
+  4. struct  
+  字节转换二进制  
+  ```
+  import struct
+  struct.pack()
+  struct.unpack()
+  ```
+
+  5. hashlib  
+  摘要算法  
+  ```
+  import hashlib
+  md = hashlib.md5()
+  md.update('soonfy'.encode('utf-8'))
+  print(md.hexdigest())
+  sha = hashlib.sha1()
+  sha.update('soonfy'.encode('utf-8'))
+  print(sha.hexdigest())
+  ```
+
+  6. itertools  
+  迭代函数  
+  ```
+  import itertools
+  natu = itertools.count(1, 2)
+  # for no in natu:
+  #   print(no)
+
+  cs = itertools.cycle('abcd')
+  # for ch in cs:
+  #   print(ch)
+
+  re = itertools.repeat('abc', 3)
+  for ch in re:
+    print(ch)
+
+  for ch in itertools.chain('abc', 'xyz'):
+    print(ch)
+
+  for key, group in itertools.groupby('AAaabbBBccaa'):
+    print(key, list(group))
+
+  for key, group in itertools.groupby('AAaabbBBccaa', lambda c: c.upper()):
+    print(key, list(group))
+  ```
+
+  7. contextlib  
+  上下文  
+
+  8. XML  
+  解析XML  
+
+  9. HTMLParser  
+  解析HTML  
+
+  10. urllib  
+  请求url  
+
+## 第三方模块  
+
+  1. PIL(python2)/pillow(python3)  
+  图片处理  
+
+  2. virtualenv  
+  虚拟运行环境  
+
+  3. tkinter  
+  图形界面  
+
+  4. 
