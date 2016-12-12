@@ -4,7 +4,7 @@
   "description": "study python",
   "main": "main.py",
   "scripts": {
-    "test": "python dome.py"
+    "test": "python3 demo.py"
   },
   "keywords": [
     "python"
