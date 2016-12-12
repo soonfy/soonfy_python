@@ -1,0 +1,14 @@
+{
+  "name": "python_sf",
+  "version": "1.0.0",
+  "description": "study python",
+  "main": "main.py",
+  "scripts": {
+    "test": "python3 demo.py"
+  },
+  "keywords": [
+    "python"
+  ],
+  "author": "soonfy",
+  "license": "ISC"
+}
