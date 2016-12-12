@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "python_sf",
-=======
   "name": "python",
->>>>>>> 13f5304ae87b00756e129ced5e84d17e57ddd2fc
   "version": "1.0.0",
   "description": "study python",
   "main": "main.py",
@@ -14,8 +10,6 @@
     "python"
   ],
   "author": "soonfy",
-<<<<<<< HEAD
-=======
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/soonfy/soonfy_python.git"
@@ -24,6 +18,5 @@
     "url": "https://github.com/soonfy/soonfy_python/issues"
   },
   "homepage": "https://github.com/soonfy/soonfy_python#readme",
->>>>>>> 13f5304ae87b00756e129ced5e84d17e57ddd2fc
   "license": "ISC"
 }
