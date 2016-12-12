@@ -1,0 +1,22 @@
+{
+  "name": "python",
+  "version": "1.0.0",
+  "description": "study python",
+  "main": "main.py",
+  "scripts": {
+    "test": "python dome.py"
+  },
+  "keywords": [
+    "python"
+  ],
+  "author": "soonfy",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/soonfy/soonfy_python.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soonfy/soonfy_python/issues"
+  },
+  "homepage": "https://github.com/soonfy/soonfy_python#readme",
+  "license": "ISC"
+}
