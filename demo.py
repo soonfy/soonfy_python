@@ -303,8 +303,31 @@ print(header)
 # s.close()
 
 # udp编程
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-for data in [b'sf', b'qw']:
-  s.sendto(data, ('127.0.0.1', 9999))
-  print(s.recv(1024).decode('utf-8'))
-s.close()
+# s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# for data in [b'sf', b'qw']:
+#   s.sendto(data, ('127.0.0.1', 9999))
+#   print(s.recv(1024).decode('utf-8'))
+# s.close()
+
+# 协程
+def consumer():
+  r = ''
+  while True:
+    n = yield r
+    if not n:
+      return
+    print('CONSUMER %s' % n)
+    r = '200 OK'
+
+def produce(c):
+  c.send(None)
+  n = 0
+  while n < 5:
+    n = n + 1
+    print('PRODUCER %s' % n)
+    r = c.send(n)
+    print('CONSUMER send %s' % r)
+  c.close()
+
+c =consumer()
+produce(c)
