@@ -274,3 +274,37 @@ for key, group in itertools.groupby('AAaabbBBccaa'):
 
 for key, group in itertools.groupby('AAaabbBBccaa', lambda c: c.upper()):
   print(key, list(group))
+
+# tcp编程 创建socket => 建立链接 => 发送请求 => 接受数据 => 关闭链接
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('www.sina.com.cn', 80))
+s.send(b'GET / HTTP/1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n')
+buff = []
+while True:
+  d = s.recv(1024)
+  if(d):
+    buff.append(d)
+  else:
+    break
+data = b''.join(buff)
+s.close()
+header, html = data.split(b'\r\n\r\n', 1)
+# print(html)
+print(header)
+
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# s.connect(('127.0.0.1', 9999))
+# print(s.recv(1024).decode('utf-8'))
+# for data in [b'sf', b'qw', b'zx']:
+#   s.send(data)
+#   print(s.recv(1024).decode('utf-8'))
+# s.send(b'exit')
+# s.close()
+
+# udp编程
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+for data in [b'sf', b'qw']:
+  s.sendto(data, ('127.0.0.1', 9999))
+  print(s.recv(1024).decode('utf-8'))
+s.close()

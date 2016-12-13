@@ -382,4 +382,52 @@
   3. tkinter  
   图形界面  
 
-  4. 
+  4. 网络编程  
+
+    * tcp  
+    socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
+    socket.connect() => 参数是tuple(ip, port)
+    socket.send() => 参数是字节
+    ```
+    # tcp编程
+    # client: 创建socket => 建立链接 => 发送请求 => 接受数据 => 关闭链接
+    # server: 创建socket => 绑定ip:port => 监听请求 => 新建进程/线程 => 关闭链接
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('www.sina.com.cn', 80))
+    s.send(b'GET / HTTP/1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n')
+    buff = []
+    while True:
+      d = s.recv(1024)
+      if(d):
+        buff.append(d)
+      else:
+        break
+    data = b''.join(buff)
+    s.close()
+    header, html = data.split(b'\r\n\r\n', 1)
+    # print(html)
+    print(header)
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('127.0.0.1', 9999))
+    print(s.recv(1024).decode('utf-8'))
+    for data in [b'sf', b'qw', b'zx']:
+      s.send(data)
+      print(s.recv(1024).decode('utf-8'))
+    s.send(b'exit')
+    s.close()
+    ```
+
+    * udp  
+    socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    ```
+    # udp编程
+    # client: 创建socket => 发送数据 => 接受数据 => 关闭socket
+    # server: 创建socket => 绑定ip:port => 监听请求 => 新建进程/线程 => 关闭链接
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    for data in [b'sf', b'qw']:
+      s.sendto(data, ('127.0.0.1', 9999))
+      print(s.recv(1024).decode('utf-8'))
+    s.close()
+    ```

@@ -4,8 +4,8 @@
   "description": "study python",
   "main": "main.py",
   "scripts": {
-    "python2": "python demo2.py",
-    "python3": "python demo.py"
+    "py2": "python demo2.py",
+    "py3": "python3 demo.py"
   },
   "keywords": [
     "python"
