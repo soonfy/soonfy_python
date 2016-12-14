@@ -5,7 +5,8 @@
   "main": "main.py",
   "scripts": {
     "py2": "python demo2.py",
-    "py3": "python3 demo.py"
+    "py3": "python3 demo.py",
+    "spider": "python3 spider_douban/run.py"
   },
   "keywords": [
     "python"

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'project entrance.'
+'crawl douban book.'
 
 __author__ = 'soonfy'
 
