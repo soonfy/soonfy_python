@@ -15,18 +15,17 @@ from fs import file_ready
 ua_file = os.path.abspath(r'./spider_douban/ua.txt')
 
 print('running spider...')
-# print(get_ua())
-uas = update_ua()
+# uas = update_ua()
 print('crawl ua over...')
 print('start write...')
 
-if file_ready(ua_file):
-  ua_str = '\r\n'.join(uas)
-  file_obj = open(ua_file, 'w')
-  file_obj.write(ua_str)
-  file_obj.close()
-  print('ua已写入文件...')
+# if file_ready(ua_file):
+#   ua_str = '\r\n'.join(uas)
+#   file_obj = open(ua_file, 'w')
+#   file_obj.write(ua_str)
+#   file_obj.close()
+#   print('ua已写入文件...')
 
-print('start get cookie...')
-get_cookie()
-print('over...')
+# print('start get cookie...')
+# get_cookie()
+# print('over...')
