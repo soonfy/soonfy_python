@@ -14,10 +14,10 @@ from fs import file_ready
 # 相对主程序执行路径
 ua_file = os.path.abspath(r'./spider_douban/ua.txt')
 
-print('running spider...')
+# print('running spider...')
 # uas = update_ua()
-print('crawl ua over...')
-print('start write...')
+# print('crawl ua over...')
+# print('start write...')
 
 # if file_ready(ua_file):
 #   ua_str = '\r\n'.join(uas)
@@ -26,6 +26,12 @@ print('start write...')
 #   file_obj.close()
 #   print('ua已写入文件...')
 
-# print('start get cookie...')
+print('start get cookie...')
 # get_cookie()
-# print('over...')
+print('over...')
+
+# import urllib.request
+# print(urllib.request.urlopen('https://askubuntu.com').read())
+
+import requests
+print(requests.get('https://askubuntu.com'))

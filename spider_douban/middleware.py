@@ -6,8 +6,9 @@
 __author__ = 'soonfy'
 
 from bs4 import BeautifulSoup
-import urllib.request as urllib
-import urllib.parse as urlparse
+from urllib.parse import urlencode
+from urllib import request
+import http.cookiejar
 
 url_ua = 'http://www.useragentstring.com/pages/useragentstring.php?name=All'
 url_login = 'https://www.douban.com/accounts/login'
@@ -16,10 +17,10 @@ _user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like G
 def update_ua():
   """update ua from web"""
   print('update ua...')
-  req = urllib.Request(url_ua)
+  req = request.Request(url_ua)
   req.add_header('User-Agent', _user_agent)
   try:
-    res = urllib.urlopen(req)
+    res = request.urlopen(req)
   except urllib.URLError as e:
     print(e)
   body = res.read()
@@ -40,11 +41,20 @@ def get_cookie():
   """get cookie from douban"""
   print('get cookie...')
   data = {
+    "source": 'index_nav',
     "form_email": 'soonfy@163.com',
     "form_password": 'soonfy163'
   }
-  req = urllib.Request(url_login)
+  cookie = http.cookiejar.CookieJar()
+  cjhdr  =  request.HTTPCookieProcessor(cookie)
+  opener = request.build_opener(cjhdr)
+  req = request.Request(url_login)
   req.add_header('User-Agent', _user_agent)
-  res = urllib.urlopen(req, urlparse.urlencode(data).encode('utf-8'))
+  req.add_header('Content-Type', 'application/x-www-form-urlencoded')
+  req.add_header('Content-Length', str(len(data)))
+  param = urlencode(data)
+  print(param)
+  # res = request.urlopen(req, param.encode('utf-8'))
+  res = opener.open(url_login, param)
   body = res.read()
   print(body.decode('utf-8'))
