@@ -27,11 +27,5 @@ ua_file = os.path.abspath(r'./spider_douban/ua.txt')
 #   print('ua已写入文件...')
 
 print('start get cookie...')
-# get_cookie()
+get_cookie()
 print('over...')
-
-# import urllib.request
-# print(urllib.request.urlopen('https://askubuntu.com').read())
-
-import requests
-print(requests.get('https://askubuntu.com'))
