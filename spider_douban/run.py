@@ -27,5 +27,18 @@ ua_file = os.path.abspath(r'./spider_douban/ua.txt')
 #   print('ua已写入文件...')
 
 print('start get cookie...')
-get_cookie()
+# get_cookie()
 print('over...')
+
+from urllib import request
+import http.cookiejar
+from urllib.parse import quote
+
+
+loginUrl = "https://www.douban.com/"
+cj = http.cookiejar.CookieJar()
+opener = request.build_opener(request.HTTPCookieProcessor(cj))
+request.install_opener(opener)
+resp = request.urlopen(loginUrl)
+for index, cookie in enumerate(cj):
+  print('[',index, ']',cookie)
