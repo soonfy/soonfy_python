@@ -31,22 +31,28 @@ print('start get cookie...')
 # use_cookie()
 print('over...')
 
-from douban_user.crawl_user import login, get_users
+# print('start crawl user data...')
+# from douban_user.crawl_user import login, get_users
 
-request = login()
-user_all = []
-users = get_users(request, '67492098')
-for user in users:
-  user_all.append(user)
-  _users = get_users(request, user)
-  for _user in _users:
-    user_all.append(_user)
+# request = login()
+# user_all = []
+# users = get_users(request, '67492098')
+# for user in users:
+#   user_all.append(user)
+#   _users = get_users(request, user)
+#   for _user in _users:
+#     user_all.append(_user)
 
-users_file = os.path.abspath(r'./spider_douban/douban_user/users.txt')
-if file_ready(users_file):
-  ua_str = '\r\n'.join(user_all)
-  file_obj = open(users_file, 'w')
-  file_obj.write(ua_str)
-  file_obj.close()
-  print('users已写入文件...')
-print('user data save success...')
+# users_file = os.path.abspath(r'./spider_douban/douban_user/users.txt')
+# if file_ready(users_file):
+#   ua_str = '\r\n'.join(user_all)
+#   file_obj = open(users_file, 'w')
+#   file_obj.write(ua_str)
+#   file_obj.close()
+#   print('users已写入文件...')
+# print('user data save success...')
+
+from douban_movie.crawl_movie import MovieSpider
+
+movie_spider = MovieSpider('xzyzsk7', 'book')
+movie_spider.crawl_do()
