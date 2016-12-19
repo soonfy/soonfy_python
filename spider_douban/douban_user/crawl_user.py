@@ -14,46 +14,6 @@ import http.cookiejar
 import os
 import re
 
-url_login = 'https://www.douban.com/accounts/login'
-_user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/54.0.2840.100 Safari/537.36'
-
-def login():
-  """
-  get users from douban
-  """
-  print('start login...')
-  param = {
-    "source": 'None',
-    "redir": 'https://www.douban.com/people/67492098/contacts',
-    "form_email": 'soonfy@163.com',
-    "form_password": 'soonfy163',
-    "login": '登录'
-  }
-  data = urlencode(param).encode('utf-8')
-  headers = {
-    'User-Agent': _user_agent,
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Referer': 'https://www.douban.com/people/67492098/contacts',
-    'Host': 'www.douban.com',
-    'Origin': 'https://www.douban.com'
-  }
-  req = request.Request(url_login, data, headers)
-
-  filename = os.path.abspath(r'./spider_douban/cookie.txt')
-  FileCookieJar= http.cookiejar.MozillaCookieJar(filename)
-  FileCookieJar.save()
-  handler = request.HTTPCookieProcessor(FileCookieJar)
-
-  opener = request.build_opener(handler)
-  request.install_opener(opener)
-
-  res = request.urlopen(req)
-  body = res.read().decode('utf-8')
-  print(body)
-  FileCookieJar.save()
-  print('login success...')
-  return request
-
 def get_users(request, userid):
   """
   get users from douban

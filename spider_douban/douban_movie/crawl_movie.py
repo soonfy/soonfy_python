@@ -23,8 +23,9 @@ class MovieSpider(object):
     movie_do = 'https://%s.douban.com/people/%s/do' % (self.category, self.userid)
     print(movie_do)
     opener = spider_nologin()
-    print(opener.open(movie_do).read().decode('utf-8'))
-    return opener.open(movie_do).read()
+    body = opener.open(movie_do).read()
+    print(body.decode('utf-8'))
+    return body
 
   def crawl_wish(self):
     """
@@ -33,7 +34,9 @@ class MovieSpider(object):
     movie_wish = 'https://%s.douban.com/people/%s/wish' % (self.category, self.userid)
     print(movie_wish)
     opener = spider_nologin()
-    print(opener.open(movie_wish).read().decode('utf-8'))
+    body = opener.open(movie_wish).read()
+    print(body.decode('utf-8'))
+    return body
 
   def crawl_collect(self):
     """
@@ -42,4 +45,6 @@ class MovieSpider(object):
     movie_collect = 'https://%s.douban.com/people/%s/collect' % (self.category, self.userid)
     print(movie_collect)
     opener = spider_nologin()
-    print(opener.open(movie_collect).read().decode('utf-8'))
+    body = opener.open(movie_collect).read()
+    print(body.decode('utf-8'))
+    return body

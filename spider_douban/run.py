@@ -6,11 +6,10 @@
 __author__ = 'soonfy'
 
 import os
-# from openpyxl import Workbook
-
-from middleware import update_ua, get_cookie, use_cookie
 from fs import file_ready
 
+# crawl ua
+# from middleware import update_ua, get_cookie, use_cookie
 # 相对主程序执行路径
 # ua_file = os.path.abspath(r'./spider_douban/ua.txt')
 
@@ -26,15 +25,18 @@ from fs import file_ready
 #   file_obj.close()
 #   print('ua已写入文件...')
 
-print('start get cookie...')
+# crawl douban cookie
+# print('start get cookie...')
 # get_cookie()
 # use_cookie()
-print('over...')
+# print('over...')
 
+# crawl douban user
 # print('start crawl user data...')
-# from douban_user.crawl_user import login, get_users
+# from douban_user.crawl_user import get_users
+# from douban_spider import spider_login
 
-# request = login()
+# request = spider_login()
 # user_all = []
 # users = get_users(request, '67492098')
 # for user in users:
@@ -52,7 +54,48 @@ print('over...')
 #   print('users已写入文件...')
 # print('user data save success...')
 
-from douban_movie.crawl_movie import MovieSpider
 
-movie_spider = MovieSpider('xzyzsk7', 'book')
-movie_spider.crawl_do()
+# crawl douban movie
+from douban_movie.crawl_movie import MovieSpider
+from douban_movie.parse_page import get_movie, get_next
+from douban_spider import spider_nologin
+
+movie_spider = MovieSpider('67492098', 'movie')
+body = movie_spider.crawl_do()
+movie_tuple = get_movie(body)
+user_movie = movie_tuple[0]
+movies = movie_tuple[1]
+user_movie_file = os.path.abspath(r'./spider_douban/douban_movie/user_movies/%s_%s.txt' % ('67492098', 'movie'))
+# if file_ready(user_movie_file):
+movie_str = '\r\n'.join(user_movie) + '\r\n'
+file_obj = open(user_movie_file, 'a')
+file_obj.write(movie_str)
+file_obj.close()
+movies_file = os.path.abspath(r'./spider_douban/douban_movie/movies.txt')
+# if file_ready(movies_file):
+movie_str = '\r\n'.join(movies) + '\r\n'
+file_obj = open(movies_file, 'a')
+file_obj.write(movie_str)
+file_obj.close()
+print('movies save success...')
+url_next = get_next(body)
+while url_next:
+  body = spider_nologin().open(url_next).read()
+  movie_tuple = get_movie(body)
+  user_movie = movie_tuple[0]
+  movies = movie_tuple[1]
+  user_movie_file = os.path.abspath(r'./spider_douban/douban_movie/user_movies/%s_%s.txt' % ('67492098', 'movie'))
+  # if file_ready(user_movie_file):
+  movie_str = '\r\n'.join(user_movie) + '\r\n'
+  file_obj = open(user_movie_file, 'a')
+  file_obj.write(movie_str)
+  file_obj.close()
+  movies_file = os.path.abspath(r'./spider_douban/douban_movie/movies.txt')
+  # if file_ready(movies_file):
+  movie_str = '\r\n'.join(movies) + '\r\n'
+  file_obj = open(movies_file, 'a')
+  file_obj.write(movie_str)
+  file_obj.close()
+  url_next = get_next(body)
+  print('movies save success...')
+print('all movies saved...')
