@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlencode
 from urllib import request
 import http.cookiejar
+import os
 
 url_ua = 'http://www.useragentstring.com/pages/useragentstring.php?name=All'
 url_login = 'https://www.douban.com/accounts/login'
@@ -51,9 +52,7 @@ def get_cookie():
     "redir": 'https://www.douban.com/people/67492098/contacts',
     "form_email": 'soonfy@163.com',
     "form_password": 'soonfy163',
-    "login": '登录',
-    "captcha-id": 'KmmXq1YRh3d7pr9fiytBdjXY:en',
-    "captcha-solution": 'produce'
+    "login": '登录'
   }
   data = urlencode(param).encode('utf-8')
   header = {
@@ -64,16 +63,46 @@ def get_cookie():
     'Origin': 'https://www.douban.com'
   }
 
+  filename = os.path.abspath(r'./spider_douban/cookie.txt')
+  FileCookieJar= http.cookiejar.MozillaCookieJar(filename)
+  FileCookieJar.save()
+  handler = request.HTTPCookieProcessor(FileCookieJar)
+
   req = request.Request(url_login, data, header)
 
-  cookie = http.cookiejar.CookieJar()
-  handler = request.HTTPCookieProcessor(cookie)
+  # cookie = http.cookiejar.CookieJar()
+  # handler = request.HTTPCookieProcessor(cookie)
   # proxy_support = request.ProxyHandler({'https': '114.231.242.248:8088'})
   opener = request.build_opener(handler)
-  # opener = request.build_opener(proxy_support)
   request.install_opener(opener)
   res = request.urlopen(req)
 
   body = res.read()
   print(body.decode('utf-8'))
-  print(cookie)
+  FileCookieJar.save()
+
+  # print('next page...')
+  # print(request.urlopen('https://www.douban.com/people/TORTURE/contacts').read().decode('utf-8'))
+
+def use_cookie():
+  """
+  use cookie file
+  """
+  cookie = http.cookiejar.MozillaCookieJar()
+  filename = os.path.abspath(r'./spider_douban/cookie.txt')
+  cookie.load(filename)
+  header = {
+    'User-Agent': _user_agent,
+    'Referer': 'https://www.douban.com/people/67492098/contacts',
+    'Content-Type': 'text/html; charset=utf-8',
+    'Host': 'www.douban.com',
+    'Origin': 'https://www.douban.com'
+  }
+  url = 'https://www.douban.com/people/TORTURE/contacts'
+  req = request.Request(url, ''.encode('utf-8'), header)
+  handler = request.HTTPCookieProcessor(cookie)
+  opener = request.build_opener(handler)
+  request.install_opener(opener)
+  res = request.urlopen(req)
+  body = res.read()
+  print(body.decode('utf-8'))
