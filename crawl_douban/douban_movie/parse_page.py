@@ -8,12 +8,11 @@ __author__ = 'soonfy'
 from bs4 import BeautifulSoup
 import re
 
-def get_movie(body):
+def get_movie(soup):
   """
   get data from douban user-movie html  
   ex: https://movie.douban.com/people/67492098/wish  
   """
-  soup = BeautifulSoup(body, 'html.parser')
   tag_divs = soup.find_all('div', class_='item')
   movies = []
   movie_urls = []
@@ -36,12 +35,11 @@ def get_movie(body):
   print(movie_urls)
   return movies, movie_urls
 
-def get_next(body):
+def get_next(soup):
   """
   get next url from douban movie html
   ex: https://movie.douban.com/people/67492098/wish
   """
-  soup = BeautifulSoup(body, 'html.parser')
   tag_span = soup.find('span', class_='next')
   tag_a = None
   if tag_span:

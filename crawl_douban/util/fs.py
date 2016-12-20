@@ -13,7 +13,6 @@ def file_ready(filepath):
       if os.path.isfile(filepath):
         print('文件已存在...')
       else:
-        open(filepath, 'w')
         print('不存在文件...')
     else:
       os.mkdir(os.path.split(filepath)[0])

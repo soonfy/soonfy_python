@@ -8,7 +8,6 @@ __author__ = 'soonfy'
 import os
 import time
 import random
-from fs import file_ready
 
 # crawl ua
 # from middleware import update_ua, get_cookie, use_cookie
