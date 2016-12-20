@@ -15,19 +15,19 @@ url_ua = 'http://www.useragentstring.com/pages/useragentstring.php?name=All'
 url_login = 'https://www.douban.com/accounts/login'
 _user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/54.0.2840.100 Safari/537.36'
 
-def update_ua():
+def get_ua():
   """
-  update ua from web
+  get ua list from web  
+  ex:
+    'http://www.useragentstring.com/pages/useragentstring.php?name=All'
   """
-  print('update ua...')
+  print('get ua list from web...')
   req = request.Request(url_ua)
-  req.add_header('User-Agent', _user_agent)
   try:
     res = request.urlopen(req)
   except urllib.URLError as e:
     print(e)
   body = res.read()
-  # print(body)
   soup = BeautifulSoup(body, 'html.parser')
   tag_lis = soup.find_all('li')
   uas = []
@@ -36,9 +36,15 @@ def update_ua():
     uas.append(tag.string)
   return uas
 
-def get_ua():
+def write_ua():
   """
-  get ua from file
+  write ua list to file
+  """
+  pass
+
+def read_ua():
+  """
+  read ua list from file
   """
   pass
 

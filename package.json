@@ -6,7 +6,8 @@
   "scripts": {
     "py2": "python demo2.py",
     "py3": "python3 demo.py",
-    "spider": "python3 spider_douban/run.py"
+    "spider": "python3 crawl_douban/run.py",
+    "demo": "python3 crawl_douban/run_demo.py"
   },
   "keywords": [
     "python"

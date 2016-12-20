@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'crawl douban movie data.'
+'crawl douban movie list data.'
 
 __author__ = 'soonfy'
 
@@ -24,7 +24,7 @@ class MovieSpider(object):
     print(movie_do)
     opener = spider_nologin()
     body = opener.open(movie_do).read()
-    print(body.decode('utf-8'))
+    # print(body.decode('utf-8'))
     return body
 
   def crawl_wish(self):
@@ -35,7 +35,7 @@ class MovieSpider(object):
     print(movie_wish)
     opener = spider_nologin()
     body = opener.open(movie_wish).read()
-    print(body.decode('utf-8'))
+    # print(body.decode('utf-8'))
     return body
 
   def crawl_collect(self):
@@ -46,5 +46,5 @@ class MovieSpider(object):
     print(movie_collect)
     opener = spider_nologin()
     body = opener.open(movie_collect).read()
-    print(body.decode('utf-8'))
+    # print(body.decode('utf-8'))
     return body

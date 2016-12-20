@@ -11,8 +11,7 @@ def file_ready(filepath):
   try:
     if os.path.exists(os.path.split(filepath)[0]):
       if os.path.isfile(filepath):
-        os.remove(filepath)
-        print('删除原文件...')
+        print('文件已存在...')
       else:
         print('不存在文件...')
     else:

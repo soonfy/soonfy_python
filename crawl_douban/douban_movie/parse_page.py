@@ -10,8 +10,8 @@ import re
 
 def get_movie(body):
   """
-  get data from douban movie html
-  ex: https://movie.douban.com/people/67492098/wish
+  get data from douban user-movie html  
+  ex: https://movie.douban.com/people/67492098/wish  
   """
   soup = BeautifulSoup(body, 'html.parser')
   tag_divs = soup.find_all('div', class_='item')
