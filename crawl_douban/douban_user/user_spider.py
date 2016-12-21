@@ -14,6 +14,7 @@ class UserSpider(object):
   @param userid  
   @param opener  
   relation: contacts, rev_contacts  
+  @param timeout: 60 * 2
   """
   def __init__(self, userid, opener):
     self.userid = userid

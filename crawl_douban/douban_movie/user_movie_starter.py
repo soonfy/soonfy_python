@@ -10,7 +10,8 @@ import time
 import random
 
 from bs4 import BeautifulSoup
-from spider_middleware.douban_spider import spider_nologin
+
+from spider_middleware.douban_spider import spider_nologin, spider_open
 from douban_movie.movie_spider import MovieSpider
 from douban_movie.crawl_page import get_movie, get_next, write_user_movies, write_movies
 
@@ -19,7 +20,9 @@ def run(userid):
   start run crawl user-movies  
   @param userid  
   """
-
+  # timeout
+  timeout = 60 * 2
+  
   # collect
   opener = spider_nologin()
   time.sleep(random.random())
@@ -32,7 +35,8 @@ def run(userid):
   while url_next:
     time.sleep(random.random())
     opener = spider_nologin()
-    body = opener.open(url_next).read()
+    # body = opener.open(url_next, None, timeout).read()
+    body = spider_open(opener, url_next)
     soup = BeautifulSoup(body, 'html.parser')
     user_movies, movies = get_movie(soup)
     write_user_movies(user_movies, userid)
@@ -53,7 +57,7 @@ def run(userid):
   while url_next:
     time.sleep(random.random())
     opener = spider_nologin()
-    body = opener.open(url_next).read()
+    body = spider_open(opener, url_next)
     soup = BeautifulSoup(body, 'html.parser')
     user_movies, movies = get_movie(soup)
     write_user_movies(user_movies, userid)
@@ -74,7 +78,7 @@ def run(userid):
   while url_next:
     time.sleep(random.random())
     opener = spider_nologin()
-    body = opener.open(url_next).read()
+    body = spider_open(opener, url_next)
     soup = BeautifulSoup(body, 'html.parser')
     user_movies, movies = get_movie(soup)
     write_user_movies(user_movies, userid)

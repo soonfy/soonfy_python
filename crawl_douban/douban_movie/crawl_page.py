@@ -18,8 +18,11 @@ def get_movie(soup):
   """
   tag_divs = soup.find_all('div', class_='item')
   user_movies = []
+  user_movie = None
   movie_urls = []
-  user_movie = soup.h1.string
+  tag_h = soup.h1
+  if tag_h:
+    user_movie = tag_h.string
   for tag in tag_divs:
     tag_a = tag.find('li', class_='title').find('a')
     movie_url = tag_a['href']
@@ -69,7 +72,7 @@ def write_user_movies(user_movies, userid):
     file_obj.close()
   print('%s user movies write success...' % (userid))
 
-def write_movies(movies, movie_file = r'./crawl_douban/douban_movie/user_movies.txt'):
+def write_movies(movies, movie_file = r'./crawl_douban/douban_movie/movies.txt'):
   """
   write movies into file  
   @param movies  

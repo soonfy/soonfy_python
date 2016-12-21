@@ -7,10 +7,12 @@ __author__ = 'soonfy'
 
 # modules
 import os
+import time
 
 from urllib import request
 from urllib.parse import urlencode
 from http import cookiejar
+from urllib.request import URLError
 
 from spider_middleware.ua import read_ua
 
@@ -70,3 +72,24 @@ def spider_nologin():
   opener.addheaders = headers
   print('spider success...')
   return opener
+
+def spider_open(opener, url, timeout = 60 * 2, max = 10):
+  """
+  open url  
+  @param opener  
+  @param url  
+  @param timeout  
+  @param max - max times reopen  
+  @return body/None  
+  """
+  fail = 1
+  while True:
+    try:
+      if fail > max:
+        return ''
+      body = opener.open(url, None, timeout).read()
+      return body
+    except:
+      fail += 1
+      print('=== time %s error, rest 10s ===' % fail)
+      time.sleep(1)
