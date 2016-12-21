@@ -39,12 +39,24 @@ __author__ = 'soonfy'
 ##
 ## demo crawl douban user movies
 
-from douban_movie.user_movie_starter import run
+# from douban_movie.user_movie_starter import run
 
-userfile = ('./crawl_douban/douban_user/users.txt')
-userids = open(userfile).read().split()
-# print(users)
+# userfile = ('./crawl_douban/douban_user/users.txt')
+# userids = open(userfile).read().split()
+# # print(users)
 
-for userid in userids:
-  run(userid)
-print('all users movies saved...')
+# for userid in userids:
+#   run(userid)
+# print('all users movies saved...')
+
+import threading
+import time
+
+from util.thread_sf import ThreadS, thread_nos
+
+def print_time(c):
+  print(c)
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+thread_nos(print_time, arr, 4)
