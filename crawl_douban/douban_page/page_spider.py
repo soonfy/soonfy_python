@@ -7,6 +7,7 @@ __author__ = 'soonfy'
 
 # modules
 import re
+
 from bs4 import BeautifulSoup
 
 class PageSpider(object):
@@ -56,5 +57,7 @@ class PageSpider(object):
       https://book.douban.com/review/8239252/
     """
     opener, page_people = self.opener, self.page_people
-    if 
-    return soup
+    if re.search(page_people, page):
+      print(1)
+    else:
+      print(0)

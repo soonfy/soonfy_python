@@ -8,6 +8,8 @@ __author__ = 'soonfy'
 # modules
 from bs4 import BeautifulSoup
 
+from spider_middleware import spider_open
+
 class UserSpider(object):
   """
   douban user spider class  
@@ -29,7 +31,7 @@ class UserSpider(object):
     """
     opener, contacts = self.opener, self.contacts
     print(contacts)
-    body = opener.open(contacts).read()
+    body = spider_open(opener, contacts)
     soup = BeautifulSoup(body, 'html.parser')
     return soup, 'contacts'
 
@@ -40,6 +42,6 @@ class UserSpider(object):
     """
     opener, rev_contacts = self.opener, self.rev_contacts
     print(rev_contacts)
-    body = opener.open(rev_contacts).read()
+    body = spider_open(opener, rev_contacts)
     soup = BeautifulSoup(body, 'html.parser')
     return soup, 'rev_contacts'

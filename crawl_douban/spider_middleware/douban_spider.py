@@ -80,7 +80,7 @@ def spider_open(opener, url, timeout = 60 * 2, max = 10):
   @param url  
   @param timeout  
   @param max - max times reopen  
-  @return body/None  
+  @return body/''  
   """
   fail = 1
   while True:
