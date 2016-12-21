@@ -16,7 +16,8 @@ from spider_middleware.ua import read_ua
 
 def spider_login():
   """
-  login douban spider
+  login douban spider  
+  @return opener  
   """
   url_login = 'https://www.douban.com/accounts/login'
   param = {
@@ -49,7 +50,8 @@ def spider_login():
 
 def spider_nologin():
   """
-  common douban spider
+  nologin douban spider  
+  @return opener  
   """
   header = {
     'User-Agent': read_ua(),

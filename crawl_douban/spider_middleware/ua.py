@@ -16,7 +16,8 @@ from util.fs import file_ready
 
 def spider_origin():
   """
-  common douban spider
+  origin spider  
+  @return opener  
   """
   header = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
@@ -35,6 +36,7 @@ def spider_origin():
 def get_ua():
   """
   get ua list from web  
+  @return uas  
   ex:
     'http://www.useragentstring.com/pages/useragentstring.php?name=All'
   """
@@ -42,19 +44,18 @@ def get_ua():
   print('get ua list from web...')
   opener = spider_origin()
   body = opener.open(url_ua).read()
-  print(body)
   soup = BeautifulSoup(body, 'html.parser')
   tag_lis = soup.find_all('li')
   uas = []
   for tag in tag_lis:
     tag_a = tag.find('a')
     uas.append(tag.string)
-  print(uas)
   return uas
 
 def write_ua(filepath = r'./crawl_douban/spider_middleware/ua.txt'):
   """
   write ua list to file  
+  @param filepath  
   """
   uas = get_ua()
   if file_ready(filepath):
@@ -62,17 +63,20 @@ def write_ua(filepath = r'./crawl_douban/spider_middleware/ua.txt'):
     file_obj = open(filepath, 'w')
     file_obj.write(ua_str)
     file_obj.close()
-    print('最新UA已写入文件...')
+    print('new UA write success...')
 
 def read_ua(filepath = r'./crawl_douban/spider_middleware/ua.txt'):
   """
-  read ua list from file
+  read ua from file  
+  @param filepath  
+  @return ua  
   """
   if file_ready(filepath):
     file_obj = open(filepath, 'r')
     ua_str = file_obj.read()
     file_obj.close()
     uas = ua_str.split('\n')
-    print(len(uas))
     ua = random.choice(uas)
+    print('new ua...')
+    print(ua)
     return ua

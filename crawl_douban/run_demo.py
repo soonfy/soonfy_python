@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'spider start run demo.'
+'start run demo.'
 
 __author__ = 'soonfy'
 
+##
 ## demo parse_movie
 
 # from bs4 import BeautifulSoup
@@ -21,16 +22,29 @@ __author__ = 'soonfy'
 # print(people)
 # print(stars)
 
+##
 ## demo ua
 
 # from spider_middleware.ua import write_ua, read_ua
 # write_ua()
 # print(read_ua())
 
-
-## demo crawl users
+##
+## demo login and crawl users
 # from douban_user.user_starter import run
 
 # userid = '67492098'
 # run(userid)
 
+##
+## demo crawl douban user movies
+
+from douban_movie.user_movie_starter import run
+
+userfile = ('./crawl_douban/douban_user/users.txt')
+userids = open(userfile).read().split()
+# print(users)
+
+for userid in userids:
+  run(userid)
+print('all users movies saved...')

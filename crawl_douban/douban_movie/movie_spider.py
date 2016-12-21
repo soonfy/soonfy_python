@@ -10,8 +10,10 @@ from bs4 import BeautifulSoup
 
 class MovieSpider(object):
   """
-  douban movie spider
-  category: movie, book, music
+  douban user spider class  
+  @param userid  
+  @param opener  
+  @param category: movie, book, music
   """
   def __init__(self, userid, opener, category = 'movie'):
     self.userid = userid
@@ -23,7 +25,8 @@ class MovieSpider(object):
 
   def crawl_do(self):
     """
-    正在看得
+    crawl user do  
+    @return soup  
     """
     opener, category_do = self.opener, self.category_do
     print(category_do)
@@ -33,7 +36,8 @@ class MovieSpider(object):
 
   def crawl_wish(self):
     """
-    希望看得
+    crawl user wish  
+    @return soup  
     """
     opener, category_wish = self.opener, self.category_wish
     print(category_wish)
@@ -43,7 +47,8 @@ class MovieSpider(object):
 
   def crawl_collect(self):
     """
-    看过得
+    crawl user collect  
+    @return soup  
     """
     opener, category_collect = self.opener, self.category_collect
     print(category_collect)

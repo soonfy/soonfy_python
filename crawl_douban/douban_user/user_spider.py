@@ -10,8 +10,10 @@ from bs4 import BeautifulSoup
 
 class UserSpider(object):
   """
-  douban user spider
-  relation: contacts, rev_contacts
+  douban user spider class  
+  @param userid  
+  @param opener  
+  relation: contacts, rev_contacts  
   """
   def __init__(self, userid, opener):
     self.userid = userid
@@ -21,7 +23,8 @@ class UserSpider(object):
 
   def crawl_contacts(self):
     """
-    关注
+    crawl user contacts  
+    @return soup, relation  
     """
     opener, contacts = self.opener, self.contacts
     print(contacts)
@@ -31,7 +34,8 @@ class UserSpider(object):
 
   def crawl_rev_contacts(self):
     """
-    被关注
+    crawl user rev_contacts  
+    @return soup, relation  
     """
     opener, rev_contacts = self.opener, self.rev_contacts
     print(rev_contacts)

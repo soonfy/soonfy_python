@@ -5,18 +5,24 @@
 
 __author__ = 'soonfy'
 
+# modules
 import os
 
 def file_ready(filepath):
+  """
+  judge filepath exists  
+  @param filepath  
+  @return boolean  
+  """
   try:
     if os.path.exists(os.path.split(filepath)[0]):
       if os.path.isfile(filepath):
-        print('文件已存在...')
+        print('file exists...')
       else:
-        print('不存在文件...')
+        print('no file...')
     else:
       os.mkdir(os.path.split(filepath)[0])
-      print('文件夹不存在，已新建...')
+      print('no file dir...')
     return True
   except Exception as e:
     print(e)

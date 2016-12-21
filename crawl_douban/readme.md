@@ -2,13 +2,7 @@
 
 ## spider process  
 
-  1. [login douban](login douban)  
-  2. [crawl douban user contacts]  
-  3. [crawl douban user movies]  
-  4. [crawl douban movie contents]  
-
-## login douban  
-
+  1. [login douban](login-douban)  
   ```
   url
   https://www.douban.com/accounts/login
@@ -20,25 +14,9 @@
     "form_password": 'soonfy163',
     "login": '登录'
   }
-  ```
-
-## crawl douban user contacts  
-
-  ```
-
-  ```
-
-## crawl douban user movies  
-
-  ```
-  
-  ```
-
-## crawl douban movie content  
-
-  ```
-  
-  ```
+  2. [crawl douban user contacts]  
+  3. [crawl douban user movies]  
+  4. [crawl douban movie contents]  
 
 # modules  
 
