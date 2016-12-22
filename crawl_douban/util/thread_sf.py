@@ -1,51 +1,61 @@
 import threading
 
 class ThreadS (threading.Thread):
-  def __init__(self, threadID, func, userid):
+  """
+  multi-thread class  
+  @param thread_id  
+  @param func  
+  @param *args - func args  
+  """
+  def __init__(self, thread_id, func, args):
     threading.Thread.__init__(self)
-    self.threadID = threadID
+    self.thread_id = thread_id
     self.func = func
-    self.userid = userid
+    self.args = args
 
   def run(self):
+    """
+    open thread  
+    """
     threadLock = threading.Lock()
-    print ("开启线程： %s" % self.threadID)
-    # 获取锁，用于线程同步
+    print (">> open thread %s" % self.thread_id)
     threadLock.acquire()
-    self.func(self.userid)
-    # 释放锁，开启下一个线程
+    self.func(self.args)
     threadLock.release()
 
-def thread_nos(func, arr, nos = 10):
+def concurrence(func, arr, amount = 10):
+  """
+  thread concurrence  
+  @param func  
+  @param arr  
+  @param amount  
+  """
   counter = 0
   length = len(arr)
-  iterer = iter(arr)
+  iterater = iter(arr)
   threads = []
   while True:
-  # 创建新线程
     try:
-      for thread_id in range(nos):
-        thread = ThreadS(thread_id, func, next(iterer))
+      for thread_id in range(amount):
+        thread = ThreadS(thread_id + 1, func, next(iterater))
         thread.start()
         threads.append(thread)
-
-      # 等待所有线程完成
       for thread in threads:
         thread.join()
-      print('%s threads over...' % nos)
-      counter += nos
-      if length - counter < nos:
+      print('>> %s threads over...' % amount)
+      counter += amount
+      if length - counter < amount:
+        print('>> start iter one by one...')
         break
     except:
-      print('start iter one by one...')
       break
   while True:
     try:
-      thread = ThreadS('last', func, next(iterer))
+      thread = ThreadS('one', func, next(iterater))
       thread.start()
       thread.join()
-      print('one over...')
+      print('>> one over...')
     except:
-      print('one by one over...')
+      print('>> one by one over...')
       break
-  print('all threads over...')
+  print('>> all threads over...')

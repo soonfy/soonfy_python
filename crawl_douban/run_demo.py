@@ -31,8 +31,8 @@ __author__ = 'soonfy'
 
 ##
 ## demo login and crawl users
-# from douban_user.user_starter import run
 
+# from douban_user.user_starter import run
 # userid = '67492098'
 # run(userid)
 
@@ -40,7 +40,6 @@ __author__ = 'soonfy'
 ## demo crawl douban user movies
 
 # from douban_movie.user_movie_starter import run
-
 # userfile = ('./crawl_douban/douban_user/users.txt')
 # userids = open(userfile).read().split()
 # # print(users)
@@ -49,14 +48,15 @@ __author__ = 'soonfy'
 #   run(userid)
 # print('all users movies saved...')
 
-import threading
-import time
 
-from util.thread_sf import ThreadS, thread_nos
+##
+## demo multi-thread
 
-def print_time(c):
-  print(c)
-
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-thread_nos(print_time, arr, 4)
+# import time
+# from util.thread_sf import concurrence
+# def log(obj):
+#   time.sleep(10)
+#   print(obj[0])
+#   print(obj[1])
+# arr = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]]
+# concurrence(log, arr, 4)
